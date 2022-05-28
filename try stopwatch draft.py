@@ -9,7 +9,7 @@ class StopWatch(Frame):
         self._elapsedtime = 0.0
         self._running = 0
         self.timestr = StringVar()
-        #self.lapstr = StringVar()
+        self.lapstr = StringVar()
         self.e = 0
         self.m = 0
         self.makeWidgets()
@@ -19,7 +19,7 @@ class StopWatch(Frame):
         
     def makeWidgets(self):                         
         """ Make the time label. """
-        l1 = Label(self, text='----File Name----')
+        l1 = Label(self, text='FIVEthon Pro-crammers Stopwatch', font = 'Helvetica')
         l1.pack(fill=X, expand=NO, pady=1, padx=2)
 
         self.e = Entry(self)
@@ -29,7 +29,7 @@ class StopWatch(Frame):
         self._setTime(self._elapsedtime)
         l.pack(fill=X, expand=NO, pady=3, padx=2)
 
-        l2 = Label(self, text='----Laps----')
+        l2 = Label(self, text='Laps:', font = 'Helvetica')
         l2.pack(fill=X, expand=NO, pady=4, padx=2)
 
         scrollbar = Scrollbar(self, orient=VERTICAL)
@@ -71,7 +71,7 @@ class StopWatch(Frame):
             self._elapsedtime = time.time() - self._start    
             self._setTime(self._elapsedtime)
             self._running = 0
-    
+
     def Lap(self):
         tempo = self._elapsedtime - self.lapmod2
         tempo2 = self._elapsedtime
@@ -80,16 +80,16 @@ class StopWatch(Frame):
             self.m.insert(END, self.laps[-1])
             self.m.yview_moveto(1)
             self.lapmod2 = self._elapsedtime
-            
-    def Reset(self):                                  
+    
+    def Reset(self):           
+        self.after_cancel(self._timer)                      
         self._start = time.time 
         self._elapsedtime = 0.0
         self.laps = []
         self.lapmod2 = self._elapsedtime
         self._setTime(self._elapsedtime)
 
-    
-       
+
     def GravaCSV(self):
         arquivo = str(self.e.get()) + ' - '
         with open(arquivo + self.today + '.txt', 'wb') as lapfile:
@@ -102,12 +102,12 @@ def main():
     sw = StopWatch(root)
     sw.pack(side=TOP)
 
-    Button(root, text='Lap', command=sw.Lap).pack(side=LEFT)
-    Button(root, text='Start', command=sw.Start).pack(side=LEFT)
-    Button(root, text='Stop', command=sw.Stop).pack(side=LEFT)
-    Button(root, text='Reset', command=sw.Reset).pack(side=LEFT)
-    Button(root, text='Save', command=sw.GravaCSV).pack(side=LEFT)
-    Button(root, text='Quit', command=root.quit).pack(side=LEFT)    
+    Button(root, text='Lap', font = "Helvetica", command=sw.Lap).pack(side=LEFT)
+    Button(root, text='Start', font = "Helvetica", command=sw.Start).pack(side=LEFT)
+    Button(root, text='Stop', font = "Helvetica", command=sw.Stop).pack(side=LEFT)
+    Button(root, text='Reset', font = "Helvetica", command=sw.Reset).pack(side=LEFT)
+    Button(root, text='Save', font = "Helvetica", command=sw.GravaCSV).pack(side=LEFT)
+    Button(root, text='Quit', font = "Helvetica", command=root.quit).pack(side=LEFT)    
     
     root.mainloop()
 
