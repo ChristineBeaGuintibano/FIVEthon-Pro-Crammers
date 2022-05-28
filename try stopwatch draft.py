@@ -72,6 +72,15 @@ class StopWatch(Frame):
             self._setTime(self._elapsedtime)
             self._running = 0
     
+    def Lap(self):
+        tempo = self._elapsedtime - self.lapmod2
+        tempo2 = self._elapsedtime
+        if self._running:
+            self.laps.append(f"{self._setLapTime(tempo2)} (+{self._setLapTime(tempo)})")
+            self.m.insert(END, self.laps[-1])
+            self.m.yview_moveto(1)
+            self.lapmod2 = self._elapsedtime
+            
     def Reset(self):                                  
         self._start = time.time 
         self._elapsedtime = 0.0
@@ -79,13 +88,7 @@ class StopWatch(Frame):
         self.lapmod2 = self._elapsedtime
         self._setTime(self._elapsedtime)
 
-    def Lap(self):
-        tempo = self._elapsedtime - self.lapmod2
-        if self._running:
-            self.laps.append(self._setLapTime(tempo))
-            self.m.insert(END, self.laps[-1])
-            self.m.yview_moveto(1)
-            self.lapmod2 = self._elapsedtime
+    
        
     def GravaCSV(self):
         arquivo = str(self.e.get()) + ' - '
