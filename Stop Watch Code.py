@@ -2,9 +2,11 @@ from tkinter import *
 import time
 
 class StopWatch(Frame):  
-    """ Implements a stop watch frame widget. """                                                                
+      
+
     def __init__(self, parent=None, **kw):        
         Frame.__init__(self, parent, kw)
+        self.saved = []
         self._start = 0.0        
         self._elapsedtime = 0.0
         self._running = 0
@@ -14,11 +16,11 @@ class StopWatch(Frame):
         self.m = 0
         self.makeWidgets()
         self.laps = []
+        num = 0
         self.lapmod2 = 0
         self.today = time.strftime("%d %b %Y %H-%M-%S", time.localtime())
         
-    def makeWidgets(self):                         
-        """ Make the time label. """
+    def makeWidgets(self):                          
         l1 = Label(self, text='FIVEthon Pro-crammers Stopwatch', font = 'Helvetica')
         l1.pack(fill=X, expand=NO, pady=1, padx=2)
 
@@ -40,20 +42,17 @@ class StopWatch(Frame):
         scrollbar.pack(side=RIGHT, fill=Y)
    
     def _update(self): 
-        """ Update the label with elapsed time. """
         self._elapsedtime = time.time() - self._start
         self._setTime(self._elapsedtime)
         self._timer = self.after(50, self._update)
     
     def _setTime(self, elap):
-        """ Set the time string to Minutes:Seconds:Hundreths """
         minutes = int(elap/60)
         seconds = int(elap - minutes*60.0)
         hseconds = int((elap - minutes*60.0 - seconds)*100)                
         self.timestr.set('%02d:%02d:%02d' % (minutes, seconds, hseconds))
 
     def _setLapTime(self, elap):
-        """ Set the time string to Minutes:Seconds:Hundreths """
         minutes = int(elap/60)
         seconds = int(elap - minutes*60.0)
         hseconds = int((elap - minutes*60.0 - seconds)*100)            
@@ -75,19 +74,21 @@ class StopWatch(Frame):
     def Lap(self):
         tempo = self._elapsedtime - self.lapmod2
         tempo2 = self._elapsedtime
+        self.saved.append(self.timestr)
+        num = len(self.saved)
         if self._running:
-            self.laps.append(f"{self._setLapTime(tempo2)} (+{self._setLapTime(tempo)})")
+            self.laps.append(f"Time #{num}: {self._setLapTime(tempo2)} (+{self._setLapTime(tempo)})")
             self.m.insert(END, self.laps[-1])
             self.m.yview_moveto(1)
             self.lapmod2 = self._elapsedtime
     
-    def Reset(self):                                 
+    def Reset(self):   
+        self.m.delete(0, END)
         self._start = time.time()
         self._elapsedtime = 0.0
-        self.laps = []
         self.lapmod2 = self._elapsedtime
         self._setTime(self._elapsedtime)
-
+        self.saved.clear()
 
     def GravaCSV(self):
         arquivo = str(self.e.get()) + ' - '
