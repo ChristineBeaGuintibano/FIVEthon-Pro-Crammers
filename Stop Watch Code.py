@@ -2,7 +2,7 @@ from tkinter import *
 import time
 
 class StopWatch(Frame):  
-    """ Implements a stop watch frame widget. """    
+      
 
     def __init__(self, parent=None, **kw):        
         Frame.__init__(self, parent, kw)
