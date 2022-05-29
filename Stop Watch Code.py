@@ -2,8 +2,6 @@ from tkinter import *
 import time
 
 class StopWatch(Frame):  
-      
-
     def __init__(self, parent=None, **kw):        
         Frame.__init__(self, parent, kw)
         self.saved = []
@@ -83,11 +81,12 @@ class StopWatch(Frame):
             self.lapmod2 = self._elapsedtime
     
     def Reset(self):   
-        self.m.delete(0, END)                  
+        self.m.delete(0, END)
         self._start = time.time()
         self._elapsedtime = 0.0
         self.lapmod2 = self._elapsedtime
         self._setTime(self._elapsedtime)
+        self.saved.clear()
 
     def GravaCSV(self):
         arquivo = str(self.e.get()) + ' - '
