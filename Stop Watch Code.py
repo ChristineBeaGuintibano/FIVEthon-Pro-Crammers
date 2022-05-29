@@ -85,10 +85,10 @@ class StopWatch(Frame):
             self.m.yview_moveto(1)
             self.lapmod2 = self._elapsedtime
     
-    def Reset(self):                                 
+    def Reset(self):
+        self.m.delete(0, END)
         self._start = time.time()
         self._elapsedtime = 0.0
-        self.laps = []
         self.lapmod2 = self._elapsedtime
         self._setTime(self._elapsedtime)
 
