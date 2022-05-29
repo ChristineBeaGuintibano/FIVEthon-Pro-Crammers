@@ -20,8 +20,7 @@ class StopWatch(Frame):
         self.lapmod2 = 0
         self.today = time.strftime("%d %b %Y %H-%M-%S", time.localtime())
         
-    def makeWidgets(self):                         
-        """ Make the time label. """
+    def makeWidgets(self):                          
         l1 = Label(self, text='FIVEthon Pro-crammers Stopwatch', font = 'Helvetica')
         l1.pack(fill=X, expand=NO, pady=1, padx=2)
 
@@ -43,20 +42,17 @@ class StopWatch(Frame):
         scrollbar.pack(side=RIGHT, fill=Y)
    
     def _update(self): 
-        """ Update the label with elapsed time. """
         self._elapsedtime = time.time() - self._start
         self._setTime(self._elapsedtime)
         self._timer = self.after(50, self._update)
     
     def _setTime(self, elap):
-        """ Set the time string to Minutes:Seconds:Hundreths """
         minutes = int(elap/60)
         seconds = int(elap - minutes*60.0)
         hseconds = int((elap - minutes*60.0 - seconds)*100)                
         self.timestr.set('%02d:%02d:%02d' % (minutes, seconds, hseconds))
 
     def _setLapTime(self, elap):
-        """ Set the time string to Minutes:Seconds:Hundreths """
         minutes = int(elap/60)
         seconds = int(elap - minutes*60.0)
         hseconds = int((elap - minutes*60.0 - seconds)*100)            
