@@ -7,4 +7,10 @@
   especially for applications where a modern sheen is unnecessary, 
   and the top priority is to quickly build something that’s functional and cross-platform.
 
+# Why is .gitignore important? 
+- The purpose of gitignore files is to ensure that certain files not tracked by git remain untracked.
+  Say you run git add . from the root directory of your repo, and you have nothing ignored. 
+  You've just added to the index all of those files you were mentally ignoring before.
+  You can create a . gitignore file in your repository's root directory to tell Git which files and directories to ignore when you make a commit. 
+  To share the ignore rules with other users who clone the repository, commit the . gitignore file in to your repository.
 
