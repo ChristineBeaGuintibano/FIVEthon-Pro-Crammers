@@ -6,6 +6,7 @@
   This makes it a compelling choice for building GUI applications in Python, 
   especially for applications where a modern sheen is unnecessary, 
   and the top priority is to quickly build something that’s functional and cross-platform.
+- For more info visit: https://www.educba.com/python-tkinter/
 
 # Why is .gitignore important? 
 - The purpose of gitignore files is to ensure that certain files not tracked by git remain untracked.
