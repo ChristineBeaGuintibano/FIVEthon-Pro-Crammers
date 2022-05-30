@@ -15,3 +15,10 @@
   You can create a . gitignore file in your repository's root directory to tell Git which files and directories to ignore when you make a commit. 
   To share the ignore rules with other users who clone the repository, commit the . gitignore file in to your repository.
 
+# Why is requirement.txt important?
+  - The purpose of requirement.txt is to help prevent any conflict among the different projects.
+    This can also serve as an easy tracker for your packages, it is usually located at the root directory of the project.
+    It saves you a lot of time in maintaining the package dependencies in the given project.
+  - When you start on developing, for example, your python application. You have to develop a specific version of the packages.
+    And if you needed changes in your package maintainer, without the requirement.txt, it might break your application; Or
+    You will spend a lot of time finding the minor issue in your maintainer. Which requirement.txt would lessen the work.
