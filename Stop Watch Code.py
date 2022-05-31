@@ -52,7 +52,7 @@ class StopWatch(Frame):
         minutes = int((elap-hours*3600)/60)
         seconds = int(elap-hours*3600-minutes*60)
         milliseconds = int((elap-hours*3600-minutes*60-seconds)*100)              
-        self.timestr.set('%02d:%02d:%02d:%02d' % (hours, minutes, seconds, hseconds))
+        self.timestr.set('%02d:%02d:%02d:%02d' % (hours, minutes, seconds, milliseconds))
 
     def _setLapTime(self, elap):
         hours = int(elap/3600)
