@@ -19,7 +19,7 @@ class StopWatch(Frame):
         self.today = time.strftime("%d %b %Y %H-%M-%S", time.localtime())
         
     def makeWidgets(self):                          
-        l1 = Label(self, text='FIVEthon Pro-crammers Stopwatch', font = ('Helvetica', 16, "bold"))
+        l1 = Label(self, text='FIVEthon Pro-crammers Stopwatch', font = ('Futura', 16, "bold"))
         l1.pack(fill=X, expand=NO, pady=1, padx=2)
 
         l2 = Label(self, text='File Name:', font = ('Helvetica', 11))
